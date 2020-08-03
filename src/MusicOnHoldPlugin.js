@@ -16,11 +16,12 @@ export default class MusicOnHoldPlugin extends FlexPlugin {
    */
   init(flex, manager) {
     const runtimeDomain = 'YOUR_RUNTIME_DOMAIN'
+    const holdMusicUrl = 'YOUR_HOLD_MUSIC'
 
     //Replace HoldCall Action
     flex.Actions.replaceAction('HoldCall', (payload, original) => {
       return new Promise((resolve, reject) => {
-        payload.holdMusicUrl = 'https://api.twilio.com/cowbell.mp3';
+        payload.holdMusicUrl = holdMusicUrl;
         const task = payload.task;
         const hold = true; 
         if(task.attributes.direction === 'outbound') {
